@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.LinkedList;
 
 public class GraphTraversal {
     static class Edge {
@@ -12,7 +13,7 @@ public class GraphTraversal {
     }
 
     static void createGraph(ArrayList<Edge> graph[]) {
-        for (int i = 0; i < verts; i++) {
+        for (int i = 0; i < graph.length; i++) {
             graph[i] = new ArrayList<>();
         }
 
@@ -40,10 +41,30 @@ public class GraphTraversal {
         graph[6].add(new Edge(6, 5, 1));
     }
 
+    public static void bfs(ArrayList<Edge>[] graph) {
+        Queue<Integer> q = new LinkedList<>();
+        boolean visited[] = new boolean[graph.length];
+        q.add(0); // source = 0
+
+        while (!q.isEmpty()) {
+            int curr = q.remove();
+
+            if (!visited[curr]) {
+                System.out.print(curr + " ");
+                visited[curr] = true;
+                for (int i = 0; i < graph[curr].size(); i++) {
+                    Edge e = graph[curr].get(i);
+                    q.add(e.dest);
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
         int verts = 7;
         ArrayList<Edge>[] graph = new ArrayList[verts];
 
         createGraph(graph);
+        bfs(graph);
     }
 }
