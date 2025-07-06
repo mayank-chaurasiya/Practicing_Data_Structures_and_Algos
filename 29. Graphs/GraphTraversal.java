@@ -41,6 +41,7 @@ public class GraphTraversal {
         graph[6].add(new Edge(6, 5, 1));
     }
 
+    // Breadth First Search ----------
     public static void bfs(ArrayList<Edge>[] graph) {
         Queue<Integer> q = new LinkedList<>();
         boolean visited[] = new boolean[graph.length];
@@ -60,11 +61,26 @@ public class GraphTraversal {
         }
     }
 
+    // Depth first search -------------
+    public static void dfs(ArrayList<Edge>[] graph, int curr, boolean visited[]) {
+        // visit
+        System.out.print(curr + " ");
+        visited[curr] = true;
+
+        for (int i = 0; i < graph[curr].size(); i++) {
+            Edge e = graph[curr].get(i);
+            if (!visited[e.dest]) {
+                dfs(graph, e.dest, visited);
+            }
+        }
+    }
+
     public static void main(String[] args) {
         int verts = 7;
         ArrayList<Edge>[] graph = new ArrayList[verts];
 
         createGraph(graph);
-        bfs(graph);
+        // bfs(graph);
+        dfs(graph, 0, new boolean[verts]);
     }
 }
