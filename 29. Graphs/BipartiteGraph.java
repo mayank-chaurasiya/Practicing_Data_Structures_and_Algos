@@ -26,10 +26,10 @@ public class BipartiteGraph {
         graph[2].add(new Edge(2, 4));
 
         graph[3].add(new Edge(3, 1));
-        graph[3].add(new Edge(3, 4));
+        // graph[3].add(new Edge(3, 4));
 
         graph[4].add(new Edge(4, 2));
-        graph[4].add(new Edge(4, 3));
+        // graph[4].add(new Edge(4, 3));
     }
 
     public static boolean isBipartite(ArrayList<Edge>[] graph) {
@@ -70,3 +70,5 @@ public class BipartiteGraph {
         System.out.println(isBipartite(graph));
     }
 }
+
+// if graph doesn't have cycle -> BIPARTITE 
