@@ -27,9 +27,39 @@ public class TopologicalSorting {
         graph[5].add(new Edge(5, 2));
     }
 
+    public static void topSort(ArrayList<Edge>[] graph) {
+        boolean visited[] = new boolean[graph.length];
+        Stack<Integer> s = new Stack<>();
+
+        for (int i = 0; i < graph.length; i++) {
+            if (!visited[i]) {
+                topSortUtil(graph, i, visited, s); // modifies dfs
+            }
+        }
+
+        while (!s.isEmpty()) {
+            System.out.println(s.pop() + " ");
+        }
+    }
+
+    public static void topSortUtil(ArrayList<Edge>[] graph, int curr, boolean visited[], Stack<Integer> s) {
+        visited[curr] = true;
+
+        for (int i = 0; i < graph[curr].size(); i++) {
+            Edge e = graph[curr].get(i);
+            if (!visited[e.dest]) {
+                topSortUtil(graph, e.dest, visited, s);
+            }
+        }
+
+        s.push(curr);
+    }
+
     public static void main(String[] args) {
         int verts = 6;
         ArrayList<Edge> graph[] = new ArrayList[verts];
-        createGraph(graph); 
+        createGraph(graph);
+
+        topSort(graph);
     }
 }
