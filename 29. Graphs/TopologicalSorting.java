@@ -12,7 +12,7 @@ public class TopologicalSorting {
     }
 
     static void createGraph(ArrayList<Edge> graph[]) {
-        for (int i = 0; i < graph.length(); i++) {
+        for (int i = 0; i < graph.length; i++) {
             graph[i] = new ArrayList<>();
         }
 
@@ -38,7 +38,7 @@ public class TopologicalSorting {
         }
 
         while (!s.isEmpty()) {
-            System.out.println(s.pop() + " ");
+            System.out.print(s.pop() + " ");
         }
     }
 
