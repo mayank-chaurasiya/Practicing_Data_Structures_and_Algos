@@ -40,6 +40,7 @@ public class TopologicalSortBfs {
 
     public static void topSort(ArrayList<Edge> graph[]) {
         int indeg[] = new int[graph.length];
+        calcIndeg(graph, indeg);
         Queue<Integer> q = new LinkedList<>();
 
         for (int i = 0; i < indeg.length; i++) {
@@ -68,5 +69,6 @@ public class TopologicalSortBfs {
         int V = 6;
         ArrayList<Edge> graph[] = new ArrayList[V];
         createGraph(graph);
+        topSort(graph);
     }
 }
