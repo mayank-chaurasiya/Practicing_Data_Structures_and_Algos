@@ -42,7 +42,7 @@ public class DijkstrasAlgorithm {
         }
 
         @Override
-        public int compareto(Pair p2) {
+        public int compareTo(Pair p2) {
             return this.path - p2.path; // path based sorting for my pairs
         }
     }
@@ -51,7 +51,7 @@ public class DijkstrasAlgorithm {
         int distance[] = new int[graph.length];
 
         for (int i = 0; i < graph.length; i++) {
-            if (i == src) {
+            if (i != src) {
                 distance[i] = Integer.MAX_VALUE;
             }
         }
@@ -71,12 +71,18 @@ public class DijkstrasAlgorithm {
                     int v = e.dest;
                     int wt = e.wt;
 
-                    if (distance[u] + wt < distance[v]) {
+                    if (distance[u] + wt < distance[v]) { // updated distance of src to v
                         distance[v] = distance[u] + wt;
+                        pq.add(new Pair(v, distance[v]));
                     }
                 }
             }
         }
+        // print all source to vertices shortest distance
+        for (int i = 0; i < distance.length; i++) {
+            System.out.print(distance[i] + " ");
+        }
+        System.out.println();
     }
 
     public static void main(String[] args) {
@@ -85,6 +91,6 @@ public class DijkstrasAlgorithm {
         createGraph(graph);
 
         int src = 0;
-
+        dijkstra(graph, src);
     }
 }
